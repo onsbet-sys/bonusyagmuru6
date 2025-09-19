@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonuscum Ultra Neon - 3D Çark & Kazı Kazan</title>
+<style>
+:root { --gap:8px; }
+body{margin:0;font-family:Arial,sans-serif;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;min-height:100vh;overflow-x:auto;}
+html, body { width:1200px; margin:0 auto; transform-origin: top center;}
+@media (max-width:1200px) { html, body { transform: scale(calc(100vw / 1200)); } }
+
+/* Preloader */
+#preloader{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+#preloader img{
+  width:500px;
+  height:500px;
+  object-fit:contain;
+}
+
+/* Kayar yazı */
+.marquee-container{position:fixed;top:0;width:100%;background:#FFD700;color:black;padding:10px;font-weight:bold;z-index:2000;display:flex;align-items:center;justify-content:center;}
+.marquee-text{font-weight:bold;font-size:16px;color:black;text-align:center; animation:flashText 1.5s infinite alternate;}
+@keyframes flashText{0%{opacity:0.4;}50%{opacity:1;}100%{opacity:0.4;}}
+.marquee-icon{width:30px;height:30px;margin:0 10px; animation:flashIcon 2s infinite alternate; cursor:pointer;}
+@keyframes flashIcon{0%{filter:drop-shadow(0 0 5px #FF00FF);}25%{filter:drop-shadow(0 0 10px #FFD700);}50%{filter:drop-shadow(0 0 15px #00FFF5);}75%{filter:drop-shadow(0 0 10px #FF00FF);}100%{filter:drop-shadow(0 0 5px #FFD700);}}
+
+/* Üst sekmeler */
+.top-tabs{display:flex;justify-content:center;gap:15px;margin:60px 0 10px;flex-wrap:wrap;}
+.top-tabs button{padding:12px 25px;font-weight:bold;font-size:16px;border:none;border-radius:10px;cursor:pointer;color:#000;background:linear-gradient(45deg,#FFD700,#FF00FF);box-shadow:0 0 10px #FFD700,0 0 20px #FF00FF;transition:transform 0.2s ease, box-shadow 0.3s ease;}
+.top-tabs button:hover{transform:scale(1.1);box-shadow:0 0 20px #FFD700,0 0 40px #FF00FF;}
+
+/* Gizemli Kutu butonu neon & titre */
+#mysteryBtn{animation:neonBlink 1s infinite alternate,shake 0.5s infinite;}
+@keyframes neonBlink{0%{box-shadow:0 0 5px #FF0;}25%{box-shadow:0 0 15px #F0F;}50%{box-shadow:0 0 25px #0FF;}75%{box-shadow:0 0 15px #0F0;}100%{box-shadow:0 0 5px #FF00FF;}}
+@keyframes shake{0%{transform:translateX(0);}25%{transform:translateX(-3px);}50%{transform:translateX(3px);}75%{transform:translateX(-3px);}100%{transform:translateX(0);}}
+
+/* Arama */
+.search-box{margin:10px auto;text-align:center;}
+.search-box input{padding:10px;width:400px;max-width:90%;border-radius:8px;border:none;font-size:16px;}
+
+/* Slider */
+.top-holder{width:1200px;height:250px;margin:20px auto;border-radius:10px;overflow:hidden;border:3px solid #00eaff;box-shadow:0 0 14px rgba(0,234,255,.6);position:relative;}
+.top-holder a,img{display:block;width:100%;height:100%;object-fit:cover;}
+
+/* 3 sütun */
+.container{display:grid;grid-template-columns:200px 1fr 200px;gap:var(--gap);width:1200px;margin-bottom:20px;}
+.column{display:flex;flex-direction:column;gap:var(--gap);}
+.center{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+
+/* Banner */
+.banner{background:#111;text-align:center;padding:20px;font-size:14px;font-weight:bold;color:#0ff;border:2px solid #0ff;border-radius:8px;text-shadow:0 0 6px #0ff,0 0 12px #0ff;box-shadow:0 0 8px #0ff,inset 0 0 6px rgba(255,255,255,.06);}
+.center .banner{font-size:16px;padding:40px;}
+.shimsek {animation: glow 1.5s ease-in-out infinite;}
+@keyframes glow {0%,100%{filter: drop-shadow(0 0 0px #00fff5);}50%{filter: drop-shadow(0 0 20px #00fff5);}}
+
+/* Mini butonlar eşit boyutta */
+.mini-btn{
+  width:100%;
+  height:60px; /* eşit yükseklik */
+  padding:0 12px; 
+  margin-bottom:8px;
+  font-weight:bold;
+  font-size:16px;
+  border:none;
+  border-radius:10px;
+  color:#000;
+  cursor:pointer;
+  text-shadow:0 0 5px #fff;
+  box-shadow:0 0 10px #fff;
+  animation:neonPulse 1.5s infinite alternate, shakeMini 0.5s infinite;
+  transition:transform 0.2s, box-shadow 0.3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.mini-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #fff,0 0 30px #FFD700;
+}
+@keyframes neonPulse{
+  0%{box-shadow:0 0 5px #fff;}
+  50%{box-shadow:0 0 20px #fff;}
+  100%{box-shadow:0 0 5px #fff;}
+}
+@keyframes shakeMini{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-2px);}
+  50%{transform:translateX(2px);}
+  75%{transform:translateX(-2px);}
+  100%{transform:translateX(0);}
+}
+
+/* Popup */
+.popup-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);backdrop-filter:blur(6px);z-index:999;overflow:auto;}
+.popup{position:relative;margin:50px auto;background:#111;border:3px solid #FFD700;border-radius:20px;padding:20px;width:90%;max-width:1250px;text-align:center;box-shadow:0 0 50px #FFD700,0 0 80px #FF00FF;color:#FFD700;transition:transform 0.3s;}
+.popup h2{margin:0 0 15px;font-size:24px;}
+#closePopup{position:absolute;top:5px;right:10px;font-size:18px;font-weight:bold;color:#FFD700;background:transparent;border:none;cursor:pointer;}
+#closePopup:hover{color:#FF00FF;}
+.popup-grid{display:grid;grid-template-columns:repeat(2,600px);gap:10px;justify-content:center;margin:20px auto;}
+.popup-grid a img{width:600px;height:125px;object-fit:cover;border-radius:8px;border:2px solid #0ff;}
+@media(max-width:1280px){.container{grid-template-columns:1fr;}.popup-grid{grid-template-columns:1fr;}.popup-grid a img{width:95%;height:auto;}}
+
+/* Koruma */
+img{ -webkit-user-drag: none; user-select: none; -webkit-user-select:none; }
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <img src="https://i.postimg.cc/3Jp8r74k/Ekran-Resmi-2025-09-18-20-24-00.png" alt="Logo">
+</div>
+
+<!-- Kayar yazı -->
+<div class="marquee-container">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="marquee-icon" alt="Instagram" onclick="window.open('#','_blank')">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="marquee-icon" alt="Telegram" onclick="window.open('#','_blank')">
+  <div class="marquee-text"> ⚡ BONUS YAĞMURU ⚡ - Hemen katıl, fırsatları kaçırma!</div>
+</div>
+
+<!-- Üst sekmeler -->
+<div class="top-tabs">
+  <button onclick="openKazananlarPopup()">Kazananlar</button>
+  <button id="mysteryBtn" onclick="openMiniPopup()">Gizemli Kutu</button>
+  <button onclick="openWheelPopup()">Çarkı Çevir</button>
+  <button onclick="openScratchPopup()">Kazı Kazan</button>
+  <button onclick="openContactPopup()">İletişim</button>
+</div>
+
+<!-- Arama kutusu -->
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Ara...">
+</div>
+
+<!-- Slider -->
+<div class="top-holder shimsek" id="top-slider">
+  <a href="https://example.com" target="_blank"><img src="https://i.postimg.cc/dQGQFmGW/betyap.webp" alt="Banner 1"></a>
+</div>
+
+<!-- 3 sütun -->
+<div class="container">
+  <div class="column" id="left">
+    <button class="mini-btn" onclick="openMiniPopup()" style="background:linear-gradient(45deg,#FF00FF,#FF69B4);">🔥 Bugün Extra Bonus! 🔥</button>
+    <button class="mini-btn" onclick="openMiniPopup()" style="background:linear-gradient(45deg,#00FFFF,#1E90FF);">🎁 Yeni Kampanya!</button>
+  </div>
+  <div class="center" id="center"></div>
+  <div class="column" id="right">
+    <button class="mini-btn" onclick="openMiniPopup()" style="background:linear-gradient(45deg,#FFD700,#FFA500);">⚡ Hemen Katıl! ⚡</button>
+    <button class="mini-btn" onclick="openMiniPopup()" style="background:linear-gradient(45deg,#7CFF00,#32CD32);">💎 Özel Teklif!</button>
+  </div>
+</div>
+
+<!-- Mini Kutular Popup -->
+<div class="popup-overlay" id="miniPopup">
+  <div class="popup">
+    <button id="closePopup" onclick="closeMiniPopup()">✖</button>
+    <h2>🔥 Mini Kutular Banner Alanı 🔥</h2>
+    <div class="popup-grid" id="miniGrid">
+      <a href="#"><img src="https://via.placeholder.com/600x125/FF00FF/000?text=1"></a>
+      <a href="#"><img src="https://via.placeholder.com/600x125/00FFFF/000?text=2"></a>
+      <!-- Diğer bannerlar eklenebilir -->
+    </div>
+  </div>
+</div>
+
+<!-- Kazananlar Popup -->
+<div class="popup-overlay" id="kazananlarPopup">
+  <div class="popup">
+    <button id="closePopup" onclick="closeKazananlarPopup()">✖</button>
+    <h2>🏆 Kazananlar Banner Alanı 🏆</h2>
+    <div class="popup-grid" id="kazananlarGrid">
+      <a href="#"><img src="https://via.placeholder.com/600x125/FFD700/000?text=K1"></a>
+      <a href="#"><img src="https://via.placeholder.com/600x125/FF00FF/000?text=K2"></a>
+      <!-- Diğer bannerlar eklenebilir -->
+    </div>
+  </div>
+</div>
+
+<script>
+// Preloader
+window.addEventListener("load", ()=>{
+  setTimeout(()=>{document.getElementById("preloader").style.display="none";},3000);
+});
+
+// Slider
+const popupBanners=[
+"https://i.postimg.cc/dQGQFmGW/betyap.webp",
+"https://i.postimg.cc/dVVyz5NC/content-1874905-3bea74745cb761e4.webp",
+"https://i.postimg.cc/tTnpD0sb/Betine-1.gif"
+];
+let index=0;
+const slider=document.getElementById("top-slider");
+setInterval(()=>{
+  index=(index+1)%popupBanners.length;
+  slider.innerHTML=`<a href="https://example.com" target="_blank"><img src="${popupBanners[index]}" alt="Banner"></a>`;
+},2000);
+
+// Neon kolonlar (3 sütun)
+const left=document.getElementById("left"), center=document.getElementById("center"), right=document.getElementById("right");
+const leftRightImgs=["https://i.postimg.cc/9Q9Ss16b/2612-b3874a911096496e9571e9be00d4fd3c.jpg","https://i.postimg.cc/C1hQB0zr/content-1865500-0d0289a14b0ad9a1b0b193a6d2772519.webp"];
+const centerImgs=["https://i.postimg.cc/dVVyz5NC/content-1874905-3bea74745cb761e4.webp","https://i.postimg.cc/D0mp6cQq/content-18758723-bf7e41dc550185b1c72b99f1cd06ea5e.webp","https://i.postimg.cc/hvwy57MN/content-1877246-d1b231f51a221bae39a380c7b9b2faf8.webp"];
+const colors=["#00FFF5","#FF00E6","#7CFF00","#FFD700","#00A8FF","#FF5F1F","#B967FF","#39FF14","#FF3131","#00FF9C"];
+
+for(let i=0;i<40;i++){
+  const b=document.createElement("div");
+  b.className="banner neon shimsek";
+  b.style.borderColor=colors[i%colors.length];
+  b.style.color=colors[(i+5)%colors.length];
+  const img=leftRightImgs[i%leftRightImgs.length];
+  b.innerHTML=`<a href="#" target="_blank"><img src="${img}" style="width:100%;" draggable="false"></a>`;
+  left.appendChild(b);
+}
+for(let i=0;i<60;i++){
+  const b=document.createElement("div");
+  b.className="banner neon shimsek";
+  b.style.borderColor=colors[i%colors.length];
+  b.style.color=colors[(i+5)%colors.length];
+  const img=centerImgs[i%centerImgs.length];
+  b.innerHTML=`<a href="#" target="_blank"><img src="${img}" style="width:100%;" draggable="false"></a>`;
+  center.appendChild(b);
+}
+for(let i=0;i<40;i++){
+  const b=document.createElement("div");
+  b.className="banner neon shimsek";
+  b.style.borderColor=colors[i%colors.length];
+  b.style.color=colors[(i+5)%colors.length];
+  const img=leftRightImgs[i%leftRightImgs.length];
+  b.innerHTML=`<a href="#" target="_blank"><img src="${img}" style="width:100%;" draggable="false"></a>`;
+  right.appendChild(b);
+}
+
+// Arama filtreleme
+document.getElementById("searchInput").addEventListener("input", function(){
+  const val=this.value.toLowerCase();
+  document.querySelectorAll(".banner").forEach(b=>{
+    b.style.display=b.textContent.toLowerCase().includes(val)?"block":"none";
+  });
+});
+
+// Popup fonksiyonları
+function openMiniPopup(){document.getElementById("miniPopup").style.display="block";}
+function closeMiniPopup(){document.getElementById("miniPopup").style.display="none";}
+function openKazananlarPopup(){document.getElementById("kazananlarPopup").style.display="block";}
+function closeKazananlarPopup(){document.getElementById("kazananlarPopup").style.display="none";}
+function openWheelPopup(){alert("Çark popup aktif değil.");}
+function openScratchPopup(){alert("Kazı Kazan popup aktif değil.");}
+function openContactPopup(){alert("İletişim popup aktif değil.");}
+</script>
+
+</body>
+</html>
